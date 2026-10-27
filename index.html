@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book | Elegance Salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .booking-container {
+            background: #0d0d0d;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #00f3ff;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.15), inset 0 0 10px rgba(0, 243, 255, 0.05);
+            width: 100%;
+            max-width: 450px;
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h2 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: #00f3ff; 
+            font-weight: 600; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+        }
+        .header p { color: #888; font-size: 13px; margin-top: 5px; letter-spacing: 1px; }
+        .form-group { margin-bottom: 20px; }
+        label { 
+            display: block; 
+            font-size: 12px; 
+            color: #00f3ff; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            background: #000000;
+            border: 1px solid #333;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #00f3ff;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus { 
+            border-color: #00f3ff; 
+            outline: none; 
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3); 
+        }
+        /* Customizing the date picker icon for dark mode */
+        ::-webkit-calendar-picker-indicator { filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg); cursor: pointer; }
+        
+        .submit-btn {
+            width: 100%;
+            background: transparent;
+            color: #00f3ff;
+            padding: 14px;
+            border: 2px solid #00f3ff;
+            border-radius: 6px;
+            font-size: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+        .submit-btn:hover { 
+            background: #00f3ff; 
+            color: #000; 
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.6); 
+        }
+        .admin-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .admin-link:hover { 
+            color: #00f3ff; 
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.5); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="booking-container">
+        <div class="header">
+            <h2>Elegance</h2>
+            <p>System Reservation Terminal</p>
+        </div>
+
+        <form action="/" method="POST">
+            <div class="form-group">
+                <label>User Identity</label>
+                <input type="text" name="customer_name" placeholder="Enter Full Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Comm-Link</label>
+                <input type="tel" name="phone" placeholder="Enter Phone Number" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Service Module</label>
+                <select name="service_id" required>
+                    <option value="" disabled selected>-- Initialize Selection --</option>
+                    {% for service in services %}
+                        <option value="{{ service[0] }}">{{ service[1] }} (₹{{ service[2] }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Temporal Coordinates</label>
+                <input type="date" name="booking_date" required>
+            </div>
+            
+            <button type="submit" class="submit-btn">Execute Booking</button>
+        </form>
+
+        <a href="/admin" class="admin-link">Access Admin Override &rarr;</a>
+    </div>
+
+</body>
+</html>

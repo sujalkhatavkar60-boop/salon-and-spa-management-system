@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Override | Elegance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background-color: #050505; 
+            color: #e0e0e0; 
+            font-family: 'Poppins', sans-serif;
+            padding: 40px 20px; 
+        }
+        .dashboard-container {
+            max-width: 1000px;
+            margin: auto;
+            background: #0d0d0d;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #00f3ff;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+        }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        h2 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: #00f3ff; 
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
+        .back-btn {
+            text-decoration: none;
+            background: transparent;
+            color: #00f3ff;
+            border: 1px solid #00f3ff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+        }
+        .back-btn:hover { 
+            background: #00f3ff; 
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #1a1a1a; }
+        th {
+            background-color: #001111;
+            color: #00f3ff;
+            font-weight: 600;
+            font-size: 13px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #00f3ff;
+        }
+        tr:hover { background-color: #0a1111; }
+        td { font-size: 14px; color: #ccc; }
+        .badge {
+            background: rgba(0, 243, 255, 0.1);
+            color: #00f3ff;
+            border: 1px solid #00f3ff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="header-flex">
+            <h2>System Logs</h2>
+            <a href="/" class="back-btn">&larr; Return to Terminal</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Log ID</th>
+                    <th>User Identity</th>
+                    <th>Comm-Link</th>
+                    <th>Service Module</th>
+                    <th>Temporal Data</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appt in appointments %}
+                <tr>
+                    <td style="color: #666;">#{{ appt[0] }}</td>
+                    <td style="font-weight: 600; color: #fff;">{{ appt[1] }}</td>
+                    <td>{{ appt[2] }}</td>
+                    <td style="color: #00f3ff;">{{ appt[3] }}</td>
+                    <td>{{ appt[4] }}</td>
+                    <td><span class="badge">Verified</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
